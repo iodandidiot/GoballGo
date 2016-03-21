@@ -5,18 +5,20 @@ public class ballScript : MonoBehaviour {
 
     bool big,small=false;
     bool normal = true;
+    Vector2 velocity = new Vector2(4,-4f);
 	// Use this for initialization
 	void Start () 
     {
-        Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
-        rigid.AddTorque(-180);
+        //Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
+        //rigid.AddTorque(-180);
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        //Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
-        //rigid.AddTorque(-180);
+        Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
+        rigid.MovePosition(rigid.position + velocity * Time.fixedDeltaTime);
 	}
 
     public void ScaleBig()
