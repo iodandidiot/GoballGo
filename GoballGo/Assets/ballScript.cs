@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ballScript : MonoBehaviour {
 
     bool big,small=false;
     bool normal = true;
-    Vector2 velocity = new Vector2(4,-4f);
+    Vector2 velocity = new Vector2(4,-8f);
 	// Use this for initialization
 	void Start () 
     {
@@ -17,6 +18,7 @@ public class ballScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        velocity.x += 0.01f;
         Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
         rigid.MovePosition(rigid.position + velocity * Time.fixedDeltaTime);
 	}
@@ -27,7 +29,7 @@ public class ballScript : MonoBehaviour {
         {
             big = true;
             normal = false;
-            gameObject.transform.localScale = new Vector2(1.25f, 1.25f);
+            gameObject.transform.localScale = new Vector2(1.5f, 1.5f);
             Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
             rigid.AddTorque(-10);
         }
@@ -44,7 +46,7 @@ public class ballScript : MonoBehaviour {
         {
             small = true;
             normal = false;
-            gameObject.transform.localScale = new Vector2(0.75f, 0.75f);
+            gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
         }
         if (big)
         {
@@ -52,6 +54,12 @@ public class ballScript : MonoBehaviour {
             big = false;
             normal = true;
         }
-
+    }
+    void OnTriggerEnter2D(Collider2D coll) 
+    {
+        if (coll.name == "end_trigger")
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 }

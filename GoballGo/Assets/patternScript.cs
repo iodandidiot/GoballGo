@@ -3,7 +3,7 @@ using System.Collections;
 
 public class patternScript : MonoBehaviour {
 
-    public int Size;
+    public float Size;
     public GameObject ball;
     public paternGenerate generate;
     public bool isGenerate=false;
@@ -13,12 +13,12 @@ public class patternScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        if (ball.transform.position.x > gameObject.transform.position.x-2f && !isGenerate)
+        if (ball.transform.position.x > gameObject.transform.position.x - 4f && !isGenerate)
         {
             generate.Generate();
             isGenerate = true;
         }
-        if (ball.transform.position.x - gameObject.transform.position.x > Size/2)
+        if (ball.transform.position.x - gameObject.transform.position.x > Size+3)
         {
             Destroy(gameObject);
         }
